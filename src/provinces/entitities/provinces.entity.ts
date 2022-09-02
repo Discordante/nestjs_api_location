@@ -18,6 +18,9 @@ export class Provinces {
   literal: string;
 
   @Column()
+  ISO_3166_2: string;
+
+  @Column()
   area: number;
 
   @Column()

@@ -14,8 +14,8 @@ export class ProvincesDto {
   readonly id?: number;
 
   @ApiPropertyOptional({
-    description: 'Autonomous Region name',
-    example: 'Burgos',
+    description: 'Province ISO-3166-2 Code',
+    example: 'ES-MA',
   })
   @IsOptional()
   readonly literal?: string;

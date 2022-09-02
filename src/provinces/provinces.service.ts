@@ -7,6 +7,7 @@ import { PageOptionsDto } from 'src/common/dto/pageOptions.dto';
 import { Logger } from 'src/config/logger/logging';
 import { isInteger } from 'src/utils/number.utils';
 import { In, Repository } from 'typeorm';
+import { ProvincesDto } from './dto/provinces.dto';
 import { ProvincesByRegionDto } from './dto/provincesByRegion.dto';
 import { Provinces } from './entitities/provinces.entity';
 
@@ -45,21 +46,20 @@ export class ProvincesService {
     return this.findByValue(value);
   }
 
-  async findByValue(value: string): Promise<Provinces> {
+  async findByValue(isoCode: string): Promise<Provinces> {
     const province = await this.provincesRepository.findOne({
-      select: ['id', 'literal', 'area', 'url'],
+      select: ['id', 'literal', 'area', 'url', 'ISO_3166_2'],
       relations: {
         region: true,
         capital: true,
       },
-
       where: {
-        literal: value,
+        ISO_3166_2: isoCode,
       },
     });
     if (!province) {
       throw new NotFoundException({
-        message: `Could not find resource with value ${value}`,
+        message: `Could not find resource with value ${isoCode}`,
       });
     }
     return province;

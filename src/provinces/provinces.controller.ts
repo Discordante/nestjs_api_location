@@ -52,7 +52,7 @@ export class ProvincesController {
         value: '07',
       },
       literal: {
-        value: 'Burgos',
+        value: 'ES-MA',
       },
     },
   })
